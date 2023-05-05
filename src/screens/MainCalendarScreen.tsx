@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {Alert, Pressable, Text, View} from 'react-native';
 import {
   Agenda,
@@ -10,18 +10,24 @@ import {
 const MainCalendar = () => {
   const [events, setEvents] = useState<any>({});
 
-  const renderItem = (event: AgendaEntry, isFirst: boolean) => {
+  const renderItem = useCallback((event: AgendaEntry, isFirst: boolean) => {
     return (
       <Pressable
-        style={{flex: 1, backgroundColor: 'white', height: event.height}}
-        onPress={() => Alert.alert(event.name)}
+        style={{
+          flex: 1,
+          backgroundColor: 'white',
+          padding: 10,
+          borderWidth: 1,
+          borderColor: 'black',
+        }}
+        onPress={() => Alert.alert(event.name, String(isFirst))}
         onLongPress={() => Alert.alert(`Long Press : ${event.name}`)}>
         <Text>{event.name}</Text>
         <Text>{event.height}</Text>
         <Text>{event.day}</Text>
       </Pressable>
     );
-  };
+  }, []);
 
   const loadItems = (day: DateData) => {
     const items = events || {};
