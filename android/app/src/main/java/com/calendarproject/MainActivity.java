@@ -4,6 +4,9 @@ import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
 
+// 2023-05-06 added for react-navigation 1/2
+import android.os.Bundle;
+
 public class MainActivity extends ReactActivity {
 
   /**
@@ -13,6 +16,11 @@ public class MainActivity extends ReactActivity {
   @Override
   protected String getMainComponentName() {
     return "CalendarProject";
+  }
+  // 2023-05-06 added for react-navigation 2/2
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(null);
   }
 
   /**
