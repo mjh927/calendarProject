@@ -10,12 +10,12 @@ const Stack = createNativeStackNavigator();
 const App: React.FC<PropsWithChildren<{}>> = ({}) => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="MainCalendar">
+      <Stack.Navigator initialRouteName="ExpandableCalendar">
         <Stack.Screen
           name="MainCalendar"
           component={MainCalendar}
           options={({navigation}) => ({
-            title: '',
+            title: 'Agenda',
             headerLeft: () => (
               <Text onPress={() => navigation.navigate('ExpandableCalendar')}>
                 캘린더 전환
@@ -35,7 +35,7 @@ const App: React.FC<PropsWithChildren<{}>> = ({}) => {
           name="ExpandableCalendar"
           component={ExpandableCalendarScreen}
           options={({navigation}) => ({
-            title: '',
+            title: 'ExpandableCalendar',
             headerLeft: () => (
               <Text onPress={() => navigation.navigate('MainCalendar')}>
                 캘린더 전환
