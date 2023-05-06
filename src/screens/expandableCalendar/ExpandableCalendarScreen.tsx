@@ -22,14 +22,17 @@ interface Props {
 const ExpandableCalendarScreen = (props: Props) => {
   const {weekView} = props;
 
+  const now = new Date();
+  const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
+  const kr_now = new Date(now.getTime() + KR_TIME_DIFF);
+  const today = kr_now.toISOString().split('T')[0];
+
   const renderItem = useCallback(({item}: any) => {
     return <AgendaItem item={item} />;
   }, []);
 
   return (
-    <CalendarProvider
-      date="2023-05-06"
-      theme={{todayButtonTextColor: '#FF00FF'}}>
+    <CalendarProvider date={today} theme={{todayButtonTextColor: '#FF00FF'}}>
       {false ? (
         <WeekCalendar />
       ) : (
@@ -64,7 +67,15 @@ const ExpandableCalendarScreen = (props: Props) => {
       <AgendaList
         sections={ITEMS}
         renderItem={renderItem}
-        dayFormat={'yyyy-MM-d'}
+        style={{backgroundColor: 'white'}}
+        sectionStyle={{
+          color: 'black',
+          fontWeight: '400',
+          paddingLeft: 10,
+          // backgroundColor: 'gray',
+          borderBottomWidth: 1,
+          borderBottomColor: '#FF0000',
+        }}
       />
     </CalendarProvider>
   );
